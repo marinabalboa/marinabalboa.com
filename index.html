@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="apple-touch-icon" href="images/favicon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>marinabalboa - photographer & filmmaker</title>
+<meta name="description" content="Portfolio of Marina Balboa – Berlin-based photographer and filmmaker specializing in music, fashion and artist imagery.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Inter', sans-serif;
+    background: #C0C0C0;
+    color: #111;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 12px 36px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #FFFFFF;
+    background: #C0C0C0;
+    z-index: 100;
+    transform: translateY(-100%);
+    transition: transform 0.3s;
+}
+
+header.visible {
+    transform: translateY(0);
+}
+
+nav a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #333;
+    font-weight: 400;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #000;
+}
+
+h1 {
+    font-weight: 1000;
+    letter-spacing: 0;
+}
+
+section {
+    padding: 40px;
+}
+
+.gallery {
+    column-count: 3;
+    column-gap: 20px;
+    padding: 40px 0;
+}
+
+.gallery-item img {
+    width: 100%;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    display: block;
+    break-inside: avoid;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 6px;
+}
+
+
+.gallery-item:hover img {
+    transform: scale(1.05) translateZ(0);
+  
+    
+}
+
+
+
+.gallery img:hover::after {
+    left: 120%;
+}
+
+
+
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-button {
+    padding: 12px 30px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #000;
+    background: #c0c0c0;
+    border: 2px solid #fff;
+    border-right-color: #808080;
+    border-bottom-color: #808080;
+    border-left-color: #fff;
+    box-shadow: inset -1px -1px 0 #fff, inset 1px 1px 0 #808080;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.1s;
+}
+
+.hero-button:hover {
+    background: #D4D0C8;
+    transform: scale(1.08);
+}
+
+.hero-button:active {
+    border: 2px solid #808080;
+    border-right-color: #fff;
+    border-bottom-color: #fff;
+    border-left-color: #808080;
+    box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #808080;
+    transform: translateY(1px);
+}
+
+#main-content {
+    display: none;
+}
+
+.visible-section {
+    opacity: 1;
+    transition: opacity 0.6s ease;
+}
+
+.hidden-section {
+    opacity: 0;
+}
+
+
+
+#contact a.email {
+    display: inline-block;
+    padding: 12px 30px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #000;
+    background: #c0c0c0;
+    border: 2px solid #fff;
+    border-right-color: #808080;
+    border-bottom-color: #808080;
+    border-left-color: #fff;
+    box-shadow: inset -1px -1px 0 #fff, inset 1px 1px 0 #808080;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.1s;
+    border-radius: 6px;
+}
+
+
+#contact a.email:hover {
+    background: #D4D0C8;
+    transform: scale(1.05);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+}
+
+#contact a.email:active {
+    border: 2px solid #808080;
+    border-right-color: #fff;
+    border-bottom-color: #fff;
+    border-left-color: #808080;
+    box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #808080;
+    transform: translateY(1px);
+}
+
+.social-links a {
+    font-size: 0.9rem;       
+    padding: 4px 8px;        
+    font-weight: bold;
+    text-decoration: none;
+    color: #000;
+    background: #c0c0c0;
+    border: 2px solid #fff;
+    border-right-color: #808080;
+    border-bottom-color: #808080;
+    border-left-color: #fff;
+    box-shadow: inset -1px -1px 0 #fff, inset 1px 1px 0 #808080;
+    border-radius: 6px;
+    transition: all 0.1s;
+}
+
+.social-links a:hover {
+    background: #FFB6C1;
+    transform: scale(1.05);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+}
+
+.social-links a:active {
+    transform: translateY(1px);
+}
+
+.site-title {
+  font-size: 4;  
+  font-weight: 1000;  
+  margin: 0;         
+  line-height: 1;
+}
+
+
+@media (max-width: 900px) {
+    .gallery {
+        column-count: 1;
+        column-gap: 15px;
+	padding: 10px;
+    }
+
+    body {
+        padding: 0 10px;
+    }
+
+   .gallery-item {
+        margin-bottom: 15px;
+        width: 100%;          
+    }
+}
+
+@media (max-width: 600px) {
+    .gallery {
+        column-count: 1;
+        column-gap: 10px;
+    }
+
+     .site-title {
+        font-size: 1.6rem;
+	white-space: nowrap;
+    }
+
+    header nav a {
+        font-size: 0.9rem;
+        margin-left: 10px;
+    }
+   
+ p {
+        font-size: 1rem;
+    }
+}
+
+
+footer {
+    text-align: center;
+    font-size: 12px;
+    color: #555;
+    padding: 30px 0;
+    opacity: 0.7;
+}
+
+
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+
+</style>
+</head>
+<body>
+
+
+<h1 class="visually-hidden">marina balboa</h1>
+<!-- Hero -->
+<section class="hero">
+    <video autoplay muted loop playsinline class="hero-video">
+        <source src="video/video1.mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay">
+        <a href="#work" class="hero-button" id="enter-button">&lt;3</a>
+    </div>
+</section>
+
+<!-- Main Content -->
+<div id="main-content">
+
+    <header id="main-header">
+   <h2 class="site-title">marina balboa</h2>  
+        <nav>
+            <a href="#work">gallery</a>
+       	    <a href="#contact">contact</a>
+	   
+        </nav>
+    </header>
+
+
+    <!-- Work Section -->
+    <section id="work">
+        <div class="gallery">
+  	
+	<div class="gallery-item">
+<img src="images/image1.jpg" alt="Work 1">
+</div>
+	<div class="gallery-item">
+<img src="images/image2.jpg" alt="Work 2">
+</div>
+	<div class="gallery-item">
+<img src="images/image3.jpg" alt="Work 3">
+</div>
+
+	<div class="gallery-item">
+<img src="images/image4.jpg" alt="Work 4">
+</div>
+	
+	<div class="gallery-item">
+<img src="images/image5.jpg" alt="Work 5">
+</div>
+
+	<div class="gallery-item">
+<img src="images/image6.jpg" alt="Work 6">
+</div>
+
+	<div class="gallery-item">
+<img src="images/image7.jpg" alt="Work 7">
+</div>
+
+	<div class="gallery-item">
+<img src="images/image8.jpg" alt="Work 8">
+</div>
+
+	<div class="gallery-item">
+<img src="images/image9.jpg" alt="Work9">
+</div>
+
+
+
+	<div class="gallery-item">
+<img src="images/image10.jpg" alt="Work 10">
+</div>
+
+
+
+	<div class="gallery-item">
+<img src="images/image11.jpg" alt="Work 11">
+</div>
+
+	<div class="gallery-item">	
+<img src="images/image12.jpg" alt="Work 12">
+</div>
+	<div class="gallery-item">
+<img src="images/image13.jpg" alt="Work 13">
+</div>
+        
+	<div class="gallery-item">
+<img src="images/image14.jpg" alt="Work 14">
+</div>
+
+	<div class="gallery-item">
+<img src="images/image16.jpg" alt="Work 16">
+</div>
+
+
+
+	<div class="gallery-item">
+<img src="images/image17.jpg" alt="Work 17">
+</div>	
+
+
+	<div class="gallery-item">
+<img src="images/image18.jpg" alt="Work 18">
+</div>
+
+	<div class="gallery-item">
+<img src="images/image19.jpg" alt="Work 19">
+</div>
+
+
+
+<div class="gallery-item">
+    <img src="images/image20.jpg" alt="Work 20">
+</div>
+
+<div class="gallery-item">
+    <img src="images/image21.jpg" alt="Work 21">
+</div>
+
+<div class="gallery-item">
+    <img src="images/image22.jpg" alt="Work 22">
+</div>
+
+<div class="gallery-item">
+    <img src="images/image23.jpg" alt="Work 23">
+</div>
+
+<div class="gallery-item">
+    <img src="images/image24.jpg" alt="Work 24">
+</div>
+
+<div class="gallery-item">
+    <img src="images/image25.jpg" alt="Work 25">
+</div>
+
+<div class="gallery-item">
+    <img src="images/image26.jpg" alt="Work 26">
+</div>
+
+<div class="gallery-item">
+    <img src="images/image27.jpg" alt="Work 27">
+</div>
+
+<div class="gallery-item">
+    <img src="images/image28.jpg" alt="Work28">
+</div>
+
+<div class="gallery-item">
+    <img src="images/image29.jpg" alt="Work29">
+</div>
+
+<div class="gallery-item">
+    <img src="images/image30.jpg" alt="Work30">
+</div>
+
+
+<div class="gallery-item">
+    <img src="images/image32.jpg" alt="Work32">
+</div>
+
+<div class="gallery-item">
+    <img src="images/image33.jpg" alt="Work33">
+</div>
+
+<div class="gallery-item">
+    <img src="images/image34.jpg" alt="Work34">
+</div>
+
+<div class="gallery-item">
+    <img src="images/image35.jpg" alt="Work35">
+</div>
+
+<div class="gallery-item">
+    <img src="images/image36.jpg" alt="Work36">
+</div>
+
+<div class="gallery-item">
+    <img src="images/image37.jpg" alt="Work37">
+</div>
+
+<div class="gallery-item">
+    <img src="images/image38.jpg" alt="Work38">
+</div>
+
+<div class="gallery-item">
+    <img src="images/image39.jpg" alt="Work39">
+</div>
+
+
+<div class="gallery-item">
+    <img src="images/image41.jpg" alt="Work41">
+</div>
+
+
+<div class="gallery-item">
+    <img src="images/image42.jpg" alt="Work42">
+</div>
+
+
+<div class="gallery-item">
+    <img src="images/image43.jpg" alt="Work43">
+</div>
+
+
+<div class="gallery-item">
+    <img src="images/image44.jpg" alt="Work44">
+</div>
+
+<div class="gallery-item">
+    <img src="images/image45.jpg" alt="Work45">
+</div>
+
+<div class="gallery-item">
+    <img src="images/image46.jpg" alt="Work46">
+</div>
+
+<div class="gallery-item">
+    <img src="images/image47.jpg" alt="Work47">
+</div>
+
+<div class="gallery-item">
+    <img src="images/image48.jpg" alt="Work48">
+</div>
+
+<div class="gallery-item">
+    <img src="images/image49.jpg" alt="Work49">
+</div>
+
+<div class="gallery-item">
+    <img src="images/image50.jpg" alt="Work50">
+</div>
+
+<div class="gallery-item">
+    <img src="images/image51.jpg" alt="Work51">
+</div>
+
+<div class="gallery-item">
+    <img src="images/image52.jpg" alt="Work52">
+</div>
+
+<div class="gallery-item">
+    <img src="images/image53.jpg" alt="Work53">
+</div>
+
+
+<div class="gallery-item">
+    <img src="images/image54.jpg" alt="Work54">
+</div>
+
+
+<div class="gallery-item">
+    <img src="images/image57.jpg" alt="Work57">
+</div>
+
+
+<div class="gallery-item">
+    <img src="images/image58.jpg" alt="Work58">
+</div>
+
+
+<div class="gallery-item">
+    <img src="images/image59.jpg" alt="Work59">
+</div>
+
+
+<div class="gallery-item">
+    <img src="images/image61.jpg" alt="Work61">
+</div>
+
+<div class="gallery-item">
+    <img src="images/image62.jpg" alt="Work62">
+</div>
+
+
+<div class="gallery-item">
+    <img src="images/image63.jpg" alt="Work63">
+</div>
+
+
+
+
+
+</div>
+    </section>
+
+ 	
+
+    <!-- Contact Section -->
+    <section id="contact">
+    
+       <p> <a href="mailto:hi@marinabalboa.com" class="email">hi@marinabalboa.com</a>
+
+</p>
+
+ <div class="social-links">
+        <a href="https://soundcloud.com/mariniya-mariniya" target="_blank" rel="noopener noreferrer">soundcloud</a>
+        <a href="https://www.instagram.com/mmarinabalboa" target="_blank" rel="noopener noreferrer">instagram</a>
+        <a href="https://vimeo.com/user73927407" target="_blank" rel="noopener noreferrer">vimeo</a>
+    </div>
+
+
+
+
+
+    </section>
+</div>
+
+<footer>
+    © 2025 Marina Balboa
+</footer>
+
+
+<script>
+const btn = document.getElementById("enter-button");
+const main = document.getElementById("main-content");
+const header = document.getElementById("main-header");
+
+
+btn.addEventListener("click", function(e){
+    e.preventDefault();
+    main.style.display = "block";
+    document.querySelector(".hero").style.display = "none";
+ 
+ const topPosition = main.offsetTop - header.offsetHeight;
+    window.scrollTo({
+        top: 0,
+        behavior: "auto"
+
+});
+
+header.classList.add("visible");
+});
+
+
+
+document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', function(e){
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        const targetPosition = target.offsetTop - header.offsetHeight;
+
+   window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+        });
+
+    });
+});
+
+
+let lastScroll = 0;
+window.addEventListener("scroll", function(){
+    const currentScroll = window.pageYOffset;
+   if(currentScroll > lastScroll && currentScroll > 100){
+        header.classList.remove("visible");
+    } else {
+        header.classList.add("visible");
+    }
+
+lastScroll = currentScroll;
+
+});
+
+
+function shuffleGallery() {
+    const gallery = document.querySelector('.gallery');
+    const images = Array.from(gallery.children);
+    for (let i = images.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        gallery.appendChild(images[j]);
+        images.splice(j,1);
+    }
+}
+
+window.addEventListener('load', shuffleGallery);
+
+
+</script>
+
+</body>
+</html>
